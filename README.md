@@ -11,7 +11,9 @@
 - **AlexNet** was a breakthrough in deep learning, showing the power of deep convolutional networks on large-scale image classification.  
 - The network consists of **5 convolutional layers**, some followed by **max-pooling**, **local response normalization (LRN)**, and **3 fully connected layers**.  
 - ReLU activations are used after each convolution and fully connected layer.  
-- The network was trained on the ImageNet dataset with over 1 million images across 1000 classes.  
+- The network was trained on the ImageNet dataset with over 1 million images across 1000 classes.
+
+> 💡 Original AlexNet split some layers across two GPUs for faster training on large data. Our implementation runs on a single GPU, keeping outputs and performance consistent with the paper.
 
 ---
 
