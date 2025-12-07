@@ -59,10 +59,7 @@ AlexNet-PyTorch-Implementation/
 │   └── alexnet_model.py        # Complete AlexNet model combining all layers
 │
 ├── images/
-│   ├── figure1.png        # AlexNet architecture overview
-│   ├── figure2.png  
-│   ├── figure4.png  
-│   └── norm.png
+│   └── figmix.jpg
 │
 ├── datasets/
 │   └── imagenet_dataset.py     # ImageNet dataset loader with augmentations
