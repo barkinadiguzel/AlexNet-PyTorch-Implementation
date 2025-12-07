@@ -6,7 +6,9 @@
 
 ---
 
-## 🏗 Model Overview
+## 🖼 Overview – AlexNet Architecture
+![AlexNet Overview](images/figmix.jpg)
+This figure presents a **unified overview of AlexNet**, combining all key components of the network: convolutional layers, max-pooling layers, local response normalization (LRN), and fully connected layers.  
 
 - **AlexNet** was a breakthrough in deep learning, showing the power of deep convolutional networks on large-scale image classification.  
 - The network consists of **5 convolutional layers**, some followed by **max-pooling**, **local response normalization (LRN)**, and **3 fully connected layers**.  
@@ -16,8 +18,34 @@
 > 💡 Original AlexNet split some layers across two GPUs for faster training on large data. Our implementation runs on a single GPU, keeping outputs and performance consistent with the paper.
 
 ---
+## 🔑 Key Formulas
 
-## 🗂 Project Structure
+1. **Convolutional Layer:**  
+
+$$y_{i,j,k}^{(l)} = f\Bigg(\sum_{c=1}^{C_{l-1}} \big(x^{(l-1)}_c * W^{(l)}_{k,c}\big)_{i,j} + b^{(l)}_k\Bigg)$$
+
+- $x^{(l-1)}_c$ = input feature map of previous layer  
+- $W^{(l)}_{k,c}$ = convolution kernel  
+- $b^{(l)}_k$ = bias  
+- $f$ = ReLU activation
+
+2. **Local Response Normalization (LRN):**  
+
+$$b^l_{x,y} = \frac{a^l_{x,y}}{\Big(k + \alpha \sum_{i=\max(0,l-n/2)}^{\min(N-1,l+n/2)} (a^i_{x,y})^2 \Big)^\beta}$$
+
+- Normalizes activations across channels  
+- Hyperparameters: $k$, $n$, $\alpha$, $\beta$ (e.g., $k=2, n=5, \alpha=10^{-4}, \beta=0.75$)
+
+3. **Fully Connected Layer:**  
+
+$$y = f(Wx + b)$$
+ 
+- Flattens convolutional output  
+- Maps to output classes with softmax at final layer
+
+> These formulas summarize AlexNet’s **core computations**: convolutional feature extraction, ReLU non-linearity, normalization (LRN), and end-to-end classification.
+
+---
 
 ```bash
 AlexNet-PyTorch-Implementation/
@@ -42,26 +70,6 @@ AlexNet-PyTorch-Implementation/
 ├── README.md
 └── requirements.txt
 ```
-
----
-
-## 📊 Figures
-
-### Figure 1 – AlexNet Architecture
-![AlexNet](images/figure1.png)
-
-- Illustrates the complete AlexNet architecture: 5 convolutional layers, 3 max-pooling layers, 2 LRN layers, and 3 fully connected layers.  
-- Input: 224×224×3 image, Output: 1000-class softmax probabilities.
-
-### Figure 2 – Convolutional Layers
-![Conv Layers](images/figure2.png)
-
-- Shows Conv1–Conv5 with kernel sizes, strides, padding, and output feature map dimensions.
-
-### Figure 4 – Fully Connected Layers
-![FC Layers](images/figure4.png)
-
-- Demonstrates FC6–FC8 layers: flattening the output of the last conv layer and producing 4096→4096→1000 features.
 
 ---
 
